@@ -29,12 +29,16 @@ class RandomDataGenerator {
         // first generate and connect users in a star shaped tree
         genTree(firstUser, users, 4);
         // then introduce some loops
+        collectFriends(users);
+        return users;
+    }
+
+    private void collectFriends(List<UserNode> users) {
         for (int i = 0; i < users.size() - 30; i++) {
             if (i % 4 == 0) {
                 users.get(i).addFriend(users.get(i + 30));
             }
         }
-        return users;
     }
 
     private void genTree(UserNode user, List<UserNode> allUsers, int depth) {
@@ -49,7 +53,7 @@ class RandomDataGenerator {
         }
     }
 
-    private UserNode genNewUser() {
+    public UserNode genNewUser() {
         return new UserNode(getRandomElement(firstNames), getRandomElement(lastNames));
     }
 
